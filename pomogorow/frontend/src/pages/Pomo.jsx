@@ -8,10 +8,12 @@ function Pomo() {
     const [showSettings, setShowSettings] = useState(false);
     const [pomodoroDuration, setPomodoroDuration] = useState(25);
     const [breakDuration, setBreakDuration] = useState(5);
+    const [sessionDuration, setSessionDuration] = useState(5);
 
-    const handleSaveSettings = ({ pomodoroDuration, breakDuration }) => {
+    const handleSaveSettings = ({ pomodoroDuration, breakDuration, sessionDuration }) => {
         setPomodoroDuration(pomodoroDuration);
         setBreakDuration(breakDuration);
+        setSessionDuration(sessionDuration);
     };
 
     return (
@@ -20,6 +22,7 @@ function Pomo() {
                 <Timer
                     pomodoroDuration={pomodoroDuration}
                     breakDuration={breakDuration}
+                    sessionDuration={sessionDuration}
                 />
                 {showSettings && (
                     <Settings
@@ -27,6 +30,7 @@ function Pomo() {
                         onSave={handleSaveSettings}
                         pomodoroDuration={pomodoroDuration}
                         breakDuration={breakDuration}
+                        sessionDuration={sessionDuration}
                     />
                 )}
                 <button onClick={() => setShowSettings(true)}>Settings</button>

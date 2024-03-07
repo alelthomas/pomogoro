@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { formatTime } from "../timerUtils.js"
 
-function Timer({ pomodoroDuration, breakDuration }) {
+function Timer({ pomodoroDuration, breakDuration, sessionDuration }) {
+    var pomoCount = 1;
     const [timeRemaining, setTimeRemaining] = useState(pomodoroDuration * 60);
     const [isActive, setIsActive] = useState(false);
     const [isBreak, setIsBreak] = useState(false);
@@ -48,6 +49,7 @@ function Timer({ pomodoroDuration, breakDuration }) {
             }, 1000);
         } else if (isActive && timeRemaining === 0) {
             setIsActive(false);
+            pomoCount++;
             handleTimerEnd();
         }
         return () => clearInterval(interval);
@@ -56,6 +58,20 @@ function Timer({ pomodoroDuration, breakDuration }) {
     return (
         <div>
             <h1>{formatTime(timeRemaining)}</h1>
+            {isBreak ? (
+                <h2>Break&nbsp;
+                {pomoCount}
+                /
+                {sessionDuration}
+                </h2>
+            ) : (
+                <h2>Pomo&nbsp;
+                {pomoCount}
+                /
+                {sessionDuration}
+                </h2>
+            )
+            }
             {isBreak ? (
                 <p>Time for a break!</p>
             ) : (
