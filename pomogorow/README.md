@@ -1,11 +1,15 @@
 # README
 
-## About
+## About PomoGoro
 
-This is the official Wails React template.
+![pomogoro screenshot](frontend/src/assets/images/pomogoro.png)
 
-You can configure the project by editing `wails.json`. More information about the project settings can be found
-here: https://wails.io/docs/reference/project-config
+This is a simple Pomodoro app written mostly in React, using Wails.
+
+I initially intended for this to be mostly in Go - but doing the front-end was very intuitive
+with React using this framework. Is this really a PomoGoro, then?
+
+Not sure, so my next mission is creating the same, but using Fyne.
 
 ## Live Development
 

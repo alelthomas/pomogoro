@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Timer from './Timer';
 import Settings from './Settings';
 import ToDo from './ToDo';

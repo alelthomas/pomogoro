@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { formatTime } from "../timerUtils.js";
 import alertSound from "../assets/sounds/alert.wav";
 import Ambience from "./Ambiance.jsx";
+import actionSound from '../assets/sounds/select.wav';
 
 function Timer({ pomodoroDuration, breakDuration, sessionDuration, ambience, onPomoComplete, totalTimeFocused, totalPomosCompleted, updateTotalTimeFocused, updateTotalPomosCompleted }) {
     const [timeRemaining, setTimeRemaining] = useState(pomodoroDuration * 60);
@@ -11,6 +12,7 @@ function Timer({ pomodoroDuration, breakDuration, sessionDuration, ambience, onP
     const [isSessionOver, setIsSessionOver] = useState(false);
 
     const audioRef = React.createRef();
+    const actionRef = React.createRef();
 
     useEffect(() => {
         setTimeRemaining(isBreak ? breakDuration * 60 : pomodoroDuration * 60);
@@ -43,10 +45,12 @@ function Timer({ pomodoroDuration, breakDuration, sessionDuration, ambience, onP
     };
 
     const toggleTimer = () => {
+        actionRef.current.play();
         setIsActive(!isActive);
     };
 
     const resetTimer = () => {
+        actionRef.current.play();
         setIsActive(false);
         setIsBreak(false);
         setTimeRemaining(pomodoroDuration * 60);
@@ -97,6 +101,7 @@ function Timer({ pomodoroDuration, breakDuration, sessionDuration, ambience, onP
                 </>
             )}
             <audio ref={audioRef} src={alertSound} />
+            <audio ref={actionRef} src={actionSound} />
             <button onClick={toggleTimer}>{isActive ? 'Pause' : 'Start'}</button>
             <button onClick={resetTimer}>Reset</button>
         </div>
